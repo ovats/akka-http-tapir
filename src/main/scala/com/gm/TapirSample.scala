@@ -8,7 +8,7 @@ import akka.http.scaladsl.server.Route
 
 import scala.util.{Failure, Success}
 
-object TairSample {
+object TapirSample {
 
   def main(args: Array[String]): Unit = {
     println("Starting AkkaHttpService ...")
