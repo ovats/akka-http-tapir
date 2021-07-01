@@ -9,8 +9,11 @@ val akkaHttpVersion = "10.2.4"
 val tapirVersion    = "0.18.0-M18"
 
 libraryDependencies ++= Seq(
-  "com.typesafe.akka"           %% "akka-actor"  % akkaVersion,
-  "com.typesafe.akka"           %% "akka-http"   % akkaHttpVersion,
-  "com.typesafe.akka"           %% "akka-stream" % akkaVersion,
-  "com.softwaremill.sttp.tapir" %% "tapir-core"  % tapirVersion,
+  "com.typesafe.akka"           %% "akka-actor"             % akkaVersion,
+  "com.typesafe.akka"           %% "akka-http"              % akkaHttpVersion,
+  "com.typesafe.akka"           %% "akka-stream"            % akkaVersion,
+  "com.softwaremill.sttp.tapir" %% "tapir-core"             % tapirVersion,
+  "com.softwaremill.sttp.tapir" %% "tapir-akka-http-server" % tapirVersion,
 )
+
+//scalacOptions += "-Ypartial-unification"
