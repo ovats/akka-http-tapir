@@ -6,9 +6,11 @@ scalaVersion := "2.13.6"
 
 val akkaVersion     = "2.6.8"
 val akkaHttpVersion = "10.2.4"
+val tapirVersion    = "0.18.0-M18"
 
 libraryDependencies ++= Seq(
-  "com.typesafe.akka" %% "akka-actor"  % akkaVersion,
-  "com.typesafe.akka" %% "akka-http"   % akkaHttpVersion,
-  "com.typesafe.akka" %% "akka-stream" % akkaVersion,
+  "com.typesafe.akka"           %% "akka-actor"  % akkaVersion,
+  "com.typesafe.akka"           %% "akka-http"   % akkaHttpVersion,
+  "com.typesafe.akka"           %% "akka-stream" % akkaVersion,
+  "com.softwaremill.sttp.tapir" %% "tapir-core"  % tapirVersion,
 )
