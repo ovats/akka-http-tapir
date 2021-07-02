@@ -13,7 +13,7 @@ object GetOneQueryParameter {
     val route: Route = path("hello") {
       parameter("name") { name =>
         get {
-          complete(StatusCodes.OK, s"Hello $name!")
+          complete(StatusCodes.OK, s"Hello $name! (akka)")
         }
       }
     }
@@ -25,9 +25,10 @@ object GetOneQueryParameter {
     import sttp.tapir.{endpoint, query, stringBody}
 
     // GET /hello2 identical to GET /hello using Tapir
-    private val tapirDefinition = endpoint.get.in("hello2").in(query[String]("name")).out(stringBody)
+    private def helloName(name: String) = Future.successful(Right(s"Hello $name! (tapir)"))
+    private val helloNameEndpoint       = endpoint.get.in("hello2").in(query[String]("name")).out(stringBody)
     val route: Route =
-      AkkaHttpServerInterpreter().toRoute(tapirDefinition)(name => Future.successful(Right(s"Hello $name!")))
+      AkkaHttpServerInterpreter().toRoute(helloNameEndpoint)(helloName)
   }
 
 }
