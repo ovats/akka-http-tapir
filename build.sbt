@@ -16,4 +16,9 @@ libraryDependencies ++= Seq(
   "com.softwaremill.sttp.tapir" %% "tapir-akka-http-server" % tapirVersion,
 )
 
+// Dependencies for generating documentation
+libraryDependencies ++= Seq(
+  "com.softwaremill.sttp.tapir" %% "tapir-openapi-docs"       % tapirVersion,
+  "com.softwaremill.sttp.tapir" %% "tapir-openapi-circe-yaml" % tapirVersion,
+)
 //scalacOptions += "-Ypartial-unification"

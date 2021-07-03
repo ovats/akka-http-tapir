@@ -48,7 +48,7 @@ object GetOneQueryParameterAndError {
         Future.successful(Right(s"Calculus ${number * 2} (tapir)"))
       }
     }
-    private val calculusEndpoint: Endpoint[Long, String, String, Any] =
+    val calculusEndpoint: Endpoint[Long, String, String, Any] =
       endpoint.get
         .in("calc2")
         .in(query[Long]("number"))
