@@ -36,7 +36,7 @@ object GetOneQueryParameter {
 
     // GET /hello2 identical to GET /hello using Tapir
     private def helloName(name: String) = Future.successful(Right(s"Hello $name! (tapir)"))
-    private val helloNameEndpoint: Endpoint[String, Unit, String, Any] =
+    val helloNameEndpoint: Endpoint[String, Unit, String, Any] =
       endpoint.get
         .in("hello2")
         .in(query[String]("name"))
