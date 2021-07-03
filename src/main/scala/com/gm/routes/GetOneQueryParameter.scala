@@ -20,13 +20,27 @@ object GetOneQueryParameter {
   }
 
   object Tapir {
+    /*
+      Endpoint[I, E, O, -R]
+        (input: EndpointInput[I], errorOutput: EndpointOutput[E], output: EndpointOutput[O], info: EndpointInfo)
+          I Input parameter types.
+          E Error output parameter types.
+          O Output parameter types.
+          R The capabilities that are required by this endpoint's inputs/outputs.
+            This might be `Any` (no requirements)
+
+     */
     import akka.http.scaladsl.server.Route
     import sttp.tapir.server.akkahttp.AkkaHttpServerInterpreter
-    import sttp.tapir.{endpoint, query, stringBody}
+    import sttp.tapir.{endpoint, query, stringBody, Endpoint}
 
     // GET /hello2 identical to GET /hello using Tapir
     private def helloName(name: String) = Future.successful(Right(s"Hello $name! (tapir)"))
-    private val helloNameEndpoint       = endpoint.get.in("hello2").in(query[String]("name")).out(stringBody)
+    private val helloNameEndpoint: Endpoint[String, Unit, String, Any] =
+      endpoint.get
+        .in("hello2")
+        .in(query[String]("name"))
+        .out(stringBody)
     val route: Route =
       AkkaHttpServerInterpreter().toRoute(helloNameEndpoint)(helloName)
   }
