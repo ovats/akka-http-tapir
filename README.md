@@ -33,7 +33,7 @@ And for the endpoint implemented using Tapir:
 curl http://localhost:8080/calc2?number=10
 ```
 
-## POST/person
+## POST /person
 
 To hit the endpoint implemented with Akka Http:
 
@@ -60,7 +60,7 @@ And return an object like this:
 
 ```
 {
-    "id" : 343
+    "id" : 343,
     "name" : "John",
     "age" : 10
 }
