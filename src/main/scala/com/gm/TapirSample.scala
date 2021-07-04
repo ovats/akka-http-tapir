@@ -3,7 +3,7 @@ package com.gm
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.server.Directives._
-import com.gm.routes.{GetOneQueryParameter, GetOneQueryParameterAndError}
+import com.gm.routes.{GetOneQueryParameter, GetOneQueryParameterAndError, PostSimple}
 
 import scala.util.{Failure, Success}
 
@@ -16,7 +16,7 @@ object TapirSample {
     import system.dispatcher
 
     val routes =
-      GetOneQueryParameter.Akka.route ~ GetOneQueryParameter.Tapir.route ~ GetOneQueryParameterAndError.Akka.route ~ GetOneQueryParameterAndError.Tapir.route
+      GetOneQueryParameter.Akka.route ~ GetOneQueryParameter.Tapir.route ~ GetOneQueryParameterAndError.Akka.route ~ GetOneQueryParameterAndError.Tapir.route ~ PostSimple.Tapir.route ~ PostSimple.Akka.route
 
     // Start API Rest
     Http()
