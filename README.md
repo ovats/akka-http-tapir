@@ -33,6 +33,38 @@ And for the endpoint implemented using Tapir:
 curl http://localhost:8080/calc2?number=10
 ```
 
+## POST/person
+
+To hit the endpoint implemented with Akka Http:
+
+```
+curl -X POST http://localhost:8080/person -H "Content-Type: application/json"  -d '{"name":"John","age":10}'
+```
+
+And for the endpoint implemented using Tapir:
+
+```
+curl -X POST http://localhost:8080/person -H "Content-Type: application/json"  -d '{"name":"John","age":10}'
+```
+
+Both endpoints an object like this:
+
+```
+{
+    "name" : "John",
+    "age" : 10
+}
+```
+
+And return an object like this:
+
+```
+{
+    "id" : 343
+    "name" : "John",
+    "age" : 10
+}
+```
 
 ## Tapir
 
