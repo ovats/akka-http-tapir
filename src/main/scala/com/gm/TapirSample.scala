@@ -3,7 +3,7 @@ package com.gm
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.server.Directives._
-import com.gm.routes.{GetOneQueryParameter, GetOneQueryParameterAndError, PostSimple}
+import com.gm.routes.{GetOneQueryParameter, GetOneQueryParameterAndError, OpenAPIDocGeneration, Person, PostSimple}
 
 import scala.util.{Failure, Success}
 
@@ -17,6 +17,16 @@ object TapirSample {
 
     val routes =
       GetOneQueryParameter.Akka.route ~ GetOneQueryParameter.Tapir.route ~ GetOneQueryParameterAndError.Akka.route ~ GetOneQueryParameterAndError.Tapir.route ~ PostSimple.Tapir.route ~ PostSimple.Akka.route
+
+    //This will print a YAML with OAS specification
+    import sttp.tapir.docs.openapi.OpenAPIDocsInterpreter
+    import sttp.tapir.openapi.circe.yaml.RichOpenAPI
+    val endpoints = Seq(
+      GetOneQueryParameter.Tapir.endpointDoc,
+      PostSimple.Tapir.endpointDoc,
+      GetOneQueryParameterAndError.Tapir.calculusEndpoint,
+    )
+    println(OpenAPIDocsInterpreter().toOpenAPI(endpoints, title = "akka-http-tapir", "1.0").toYaml)
 
     // Start API Rest
     Http()

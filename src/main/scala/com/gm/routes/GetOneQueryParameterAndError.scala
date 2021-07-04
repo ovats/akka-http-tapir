@@ -56,6 +56,11 @@ object GetOneQueryParameterAndError {
         .errorOut(stringBody)
     val route: Route =
       AkkaHttpServerInterpreter().toRoute(calculusEndpoint)(calculus)
+
+    val endpointDoc = calculusEndpoint
+      .description("Just a simple calculation")
+      .summary("Make some calculation given a number")
+      .tag("Calculus Tag")
   }
 
 }

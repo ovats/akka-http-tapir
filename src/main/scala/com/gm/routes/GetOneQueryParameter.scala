@@ -43,6 +43,11 @@ object GetOneQueryParameter {
         .out(stringBody)
     val route: Route =
       AkkaHttpServerInterpreter().toRoute(helloNameEndpoint)(helloName)
+
+    val endpointDoc: Endpoint[String, Unit, String, Any] = helloNameEndpoint
+      .description("Just a simple hello world")
+      .summary("Just a simple hello world")
+      .tag("HelloWorld Tag")
   }
 
 }
