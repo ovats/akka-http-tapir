@@ -15,8 +15,11 @@ object TapirSample {
     implicit val system: ActorSystem = ActorSystem()
     import system.dispatcher
 
-    val routes =
-      GetOneQueryParameter.Akka.route ~ GetOneQueryParameter.Tapir.route ~ GetOneQueryParameterAndError.Akka.route ~ GetOneQueryParameterAndError.Tapir.route ~ PostSimple.Tapir.route ~ PostSimple.Akka.route
+    // Routes
+    val oneQueryParameter         = GetOneQueryParameter.Akka.route ~ GetOneQueryParameter.Tapir.route
+    val oneQueryParameterAndError = GetOneQueryParameterAndError.Akka.route ~ GetOneQueryParameterAndError.Tapir.route
+    val postSimple                = PostSimple.Tapir.route ~ PostSimple.Akka.route
+    val routes                    = oneQueryParameter ~ oneQueryParameterAndError ~ postSimple
 
     //This will print a YAML with OAS specification
     import sttp.tapir.docs.openapi.OpenAPIDocsInterpreter
