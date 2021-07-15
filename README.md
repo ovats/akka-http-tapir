@@ -1,11 +1,14 @@
 # akka-http-tapir
 
+This is just a simple POC for using Tapir for fist time.
 Each endpoint has been implemented twice:
 
 - implementation using Akka Http 
 - Implementation using Tapir
 
 ## GET /hello?name={some-name}
+
+A very simple endpoint with takes a query parameter (`name`) and returns basically `Hello name!`.
 
 To hit the endpoint implemented with Akka Http:
 
@@ -21,6 +24,7 @@ curl http://localhost:8080/hello2?name="joe"
 
 ## GET /calc?number={some-number}
 
+Similar to previous, but in this case the query parameter it's a number. If `number < 0` then it will returns `Invaldid number`. 
 To hit the endpoint implemented with Akka Http:
 
 ```
@@ -35,6 +39,7 @@ curl http://localhost:8080/calc2?number=10
 
 ## POST /person
 
+This third example will accept a person as a body, will return a json, and if there's an error it will also return a json.
 To hit the endpoint implemented with Akka Http:
 
 ```
